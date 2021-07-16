@@ -21,9 +21,9 @@ function App() {
   }, [contacts]);
 
   const addContact = (newContact) => {
-    const findName = contacts.find(
-      (contact) => contact.name === newContact.name
-    );
+    const findName = contacts
+      ? contacts.find((contact) => contact.name === newContact.name)
+      : "";
 
     if (!findName) {
       setContacts((prev) => [newContact, ...prev]);
@@ -45,9 +45,11 @@ function App() {
   };
 
   const visibleContacts = useMemo(() => {
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
+    return contacts
+      ? contacts.filter((contact) =>
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+        )
+      : [];
   }, [contacts, filter]);
 
   function deleteContact(contactId) {
@@ -69,7 +71,7 @@ function App() {
       <Section title={"Contacts"}>
         <HiUsers size="26" />
         <Filter onChange={changeFilter} value={filter} />
-        {contacts.length !== 0 && (
+        {contacts && (
           <ContactList
             contacts={visibleContacts}
             onDeleteContact={deleteContact}

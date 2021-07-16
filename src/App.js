@@ -48,7 +48,7 @@ function App() {
     return contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
-  }, [filter, contacts]);
+  }, [contacts, filter]);
 
   function deleteContact(contactId) {
     setContacts(
@@ -69,10 +69,12 @@ function App() {
       <Section title={"Contacts"}>
         <HiUsers size="26" />
         <Filter onChange={changeFilter} value={filter} />
-        <ContactList
-          contacts={visibleContacts}
-          onDeleteContact={deleteContact}
-        ></ContactList>
+        {contacts.length !== 0 && (
+          <ContactList
+            contacts={visibleContacts}
+            onDeleteContact={deleteContact}
+          />
+        )}
       </Section>
     </Container>
   );

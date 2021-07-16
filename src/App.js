@@ -6,7 +6,6 @@ import { FaAddressBook } from "react-icons/fa";
 import Container from "./components/Container/Container";
 import Section from "./components/Section/Section";
 import ContactForm from "./components/ContactForm/ContactForm";
-// import FormikContactForm from "../src/components/FormikContactForm/FormikContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import Filter from "./components/Filter/Filter";
 
@@ -67,7 +66,6 @@ function App() {
       <Toaster />
       <Section title={"Phonebook"}>
         <FaAddressBook size="24" />
-        {/* <FormikContactForm onSubmit={this.addContact} /> */}
         <ContactForm onSubmit={addContact}></ContactForm>
       </Section>
 

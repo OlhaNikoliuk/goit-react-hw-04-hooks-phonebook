@@ -45,7 +45,7 @@ function ContactForm({ onSubmit }) {
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
             onChange={onInputChange}
-            value={name} // в value значение инпута
+            value={name} 
             placeholder="Rosie Simpson"
             autoFocus
           />

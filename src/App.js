@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { HiUsers } from "react-icons/hi";
 import { FaAddressBook } from "react-icons/fa";
@@ -27,7 +27,7 @@ function App() {
 
     if (!findName) {
       setContacts((prev) => [newContact, ...prev]);
-      console.log(contacts);
+
       toast.success(`Contact ${newContact.name} added to Phonebook`, {
         duration: 4000,
         position: "top-right",
@@ -44,23 +44,20 @@ function App() {
     setFilter(e.currentTarget.value);
   };
 
-  const onInputSearch = () => {
-    const searchName = filter.toLowerCase();
-
+  const visibleContacts = useMemo(() => {
     return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(searchName)
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
-  };
+  }, [filter, contacts]);
 
-  const deleteContact = (contactId) => {
+  function deleteContact(contactId) {
     setContacts(
       contacts.filter((contact) => {
         return contact.id !== contactId;
       })
     );
-  };
+  }
 
-  const visibleContacts = onInputSearch();
   return (
     <Container>
       <Toaster />
